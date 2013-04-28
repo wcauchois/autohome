@@ -1,0 +1,11 @@
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Debug\WinRecord.exe
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Debug\WinRecord.pdb
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Debug\WinRecord.exe
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Debug\WinRecord.pdb
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Debug\NAudio.dll
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Debug\NAudio.WindowsMediaFormat.dll
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Debug\NAudio.xml
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Debug\WinBroadcast.Properties.Resources.resources
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Debug\GenerateResource.write.1.tlog
