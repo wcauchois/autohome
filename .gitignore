@@ -3,3 +3,5 @@ WinBroadcast/*.suo
 WinBroadcast/*.csproj.user
 WinBroadcast/bin
 WinBroadcast/obj
+WinBroadcast/publish
+*.pfx

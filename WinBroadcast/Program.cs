@@ -52,7 +52,7 @@ namespace WinBroadcast {
       trayMenu.MenuItems.Add("Exit", OnExit);
 
       trayIcon = new NotifyIcon();
-      trayIcon.Text = "AutoHome Recorder";
+      trayIcon.Text = "AutoHome Broadcaster";
 
       UpdateTrayMenuAndIcon();
 
@@ -155,9 +155,14 @@ namespace WinBroadcast {
     /// </summary>
     [STAThread]
     static void Main() {
-      Application.EnableVisualStyles();
-      Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new SystemTrayForm());
+      var alreadyLaunched = System.Diagnostics.Process.GetProcessesByName(
+        System.IO.Path.GetFileNameWithoutExtension(
+        System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1;
+      if (!alreadyLaunched) {
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.Run(new SystemTrayForm());
+      }
     }
   }
 }
