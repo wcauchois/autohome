@@ -8,8 +8,8 @@
     <ProjectGuid>{E3C7094E-2C65-4808-ABA4-CA050EE90A0B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WinBroadcast</RootNamespace>
-    <AssemblyName>AutoHome Broadcaster</AssemblyName>
+    <RootNamespace>WinStreamer</RootNamespace>
+    <AssemblyName>AutoHome Streamer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -106,7 +106,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="WinBroadcast_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="RecordDisabled.ico" />

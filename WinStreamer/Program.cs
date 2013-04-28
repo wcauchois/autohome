@@ -11,48 +11,48 @@ using NAudio.CoreAudioApi;
 using NAudio.Wave;
 using System.Threading;
 
-namespace WinBroadcast {
+namespace WinStreamer {
   public class SystemTrayForm : Form {
     private NotifyIcon trayIcon;
     private ContextMenu trayMenu;
     private Icon inactiveIcon, activeIcon;
-    private MenuItem startBroadcasting, stopBroadcasting;
+    private MenuItem startStreaming, stopStreaming;
     private TcpClient tcpClient;
     private IWaveIn waveIn;
     private bool reset = false;
-    private bool broadcasting = false;
+    private bool streaming = false;
 
     private void UpdateTrayMenuAndIcon() {
-      trayMenu.MenuItems.Remove(startBroadcasting);
-      trayMenu.MenuItems.Remove(stopBroadcasting);
-      if (broadcasting) {
-        trayMenu.MenuItems.Add(0, stopBroadcasting);
+      trayMenu.MenuItems.Remove(startStreaming);
+      trayMenu.MenuItems.Remove(stopStreaming);
+      if (streaming) {
+        trayMenu.MenuItems.Add(0, stopStreaming);
         trayIcon.Icon = activeIcon;
       } else {
-        trayMenu.MenuItems.Add(0, startBroadcasting);
+        trayMenu.MenuItems.Add(0, startStreaming);
         trayIcon.Icon = inactiveIcon;
       }
     }
 
     private Icon GetEmbeddedIcon(string name) {
       Assembly assembly = Assembly.GetExecutingAssembly();
-      return new Icon(assembly.GetManifestResourceStream(string.Format("WinBroadcast.{0}", name)));
+      return new Icon(assembly.GetManifestResourceStream(string.Format("WinStreamer.{0}", name)));
     }
 
     public SystemTrayForm() {
       activeIcon = GetEmbeddedIcon("RecordEnabled.ico");
       inactiveIcon = GetEmbeddedIcon("RecordDisabled.ico");
 
-      startBroadcasting = new MenuItem("Start broadcasting", OnStartBroadcasting);
-      stopBroadcasting = new MenuItem("Stop broadcasting", delegate(object sender, EventArgs e) {
-        EndBroadcasting();
+      startStreaming = new MenuItem("Start streaming", OnStartStreaming);
+      stopStreaming = new MenuItem("Stop streaming", delegate(object sender, EventArgs e) {
+        EndStreaming();
       });
 
       trayMenu = new ContextMenu();
       trayMenu.MenuItems.Add("Exit", OnExit);
 
       trayIcon = new NotifyIcon();
-      trayIcon.Text = "AutoHome Broadcaster";
+      trayIcon.Text = "AutoHome Streamer";
 
       UpdateTrayMenuAndIcon();
 
@@ -79,9 +79,9 @@ namespace WinBroadcast {
       }
     }
 
-    private void OnStartBroadcasting(object sender, EventArgs e) {
+    private void OnStartStreaming(object sender, EventArgs e) {
       if (TryConnect()) {
-        broadcasting = true;
+        streaming = true;
         reset = false;
         UpdateTrayMenuAndIcon();
 
@@ -109,14 +109,14 @@ namespace WinBroadcast {
           reset = true;
           BeginInvoke((MethodInvoker)delegate {
             trayIcon.ShowBalloonTip(1000, "Disconnected", "Disconnected from remote host", ToolTipIcon.Info);
-            EndBroadcasting();
+            EndStreaming();
           });
         }
       }
     }
 
-    private void EndBroadcasting() {
-      broadcasting = false;
+    private void EndStreaming() {
+      streaming = false;
 
       if (waveIn != null) {
         waveIn.StopRecording();
@@ -143,7 +143,7 @@ namespace WinBroadcast {
 
     protected override void Dispose(bool disposing) {
       if (disposing) {
-        EndBroadcasting();
+        EndStreaming();
         trayIcon.Dispose();
       }
       base.Dispose(disposing);

@@ -1,0 +1,15 @@
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Release\NAudio.dll
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Release\NAudio.WindowsMediaFormat.dll
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Release\NAudio.xml
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\WinBroadcast.Properties.Resources.resources
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Release\AutoHome Broadcaster.exe.manifest
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Release\AutoHome Broadcaster.application
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Release\AutoHome Broadcaster.exe
+C:\Users\Bill\Code\autohome\WinBroadcast\bin\Release\AutoHome Broadcaster.pdb
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\AutoHome Broadcaster.exe.manifest
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\AutoHome Broadcaster.application
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\AutoHome Broadcaster.exe
+C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\AutoHome Broadcaster.pdb
