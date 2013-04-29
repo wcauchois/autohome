@@ -1,8 +1,4 @@
 {
-  "web_port": 8080,
-  "starting_volume": 1.0,
-  "source_device": "alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00-CODEC.analog-stereo",
-  "sink_device": "alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00-CODEC.analog-stereo",
-  "latency_msec": 100,
-  "volume_increment": 0.1
+  "control_port": 8080,
+  "sink_device": "alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00-CODEC.analog-stereo"
 }
