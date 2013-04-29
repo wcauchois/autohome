@@ -43,6 +43,7 @@ int main(int argc, char **argv) {
     exit(1);
   }
   printf("Listening on port %d\n", listen_port);
+  fflush(stdout);
 
   for (;;) {
     int client_sock;

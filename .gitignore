@@ -6,3 +6,4 @@ WinBroadcast/bin
 WinBroadcast/obj
 WinBroadcast/publish
 *.pfx
+runtime.json
