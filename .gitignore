@@ -4,4 +4,6 @@ WinStreamer/*.csproj.user
 WinStreamer/bin
 WinStreamer/obj
 WinStreamer/publish
+bin
 *.pfx
+runtime.json
