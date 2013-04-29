@@ -51,7 +51,6 @@ int main(int argc, char **argv) {
     socklen_t addrlen = sizeof(client_addr);
     char addrstr[INET_ADDRSTRLEN];
     int childpid;
-    int pipefd[2];
 
     client_sock = accept(server_sock, &client_addr, &addrlen);
     if (0 > client_sock) {
