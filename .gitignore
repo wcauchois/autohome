@@ -1,7 +1,7 @@
 *.swp
-WinBroadcast/*.suo
-WinBroadcast/*.csproj.user
-WinBroadcast/bin
-WinBroadcast/obj
-WinBroadcast/publish
+WinStreamer/*.suo
+WinStreamer/*.csproj.user
+WinStreamer/bin
+WinStreamer/obj
+WinStreamer/publish
 *.pfx

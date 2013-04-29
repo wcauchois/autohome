@@ -13,3 +13,23 @@ C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\AutoHome Streamer.exe.m
 C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\AutoHome Streamer.application
 C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\AutoHome Streamer.exe
 C:\Users\Bill\Code\autohome\WinBroadcast\obj\x86\Release\AutoHome Streamer.pdb
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\NAudio.dll
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\NAudio.WindowsMediaFormat.dll
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\NAudio.xml
+C:\Users\Bill\Code\autohome\WinStreamer\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Bill\Code\autohome\WinStreamer\obj\x86\Release\WinStreamer.Properties.Resources.resources
+C:\Users\Bill\Code\autohome\WinStreamer\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\Bill\Code\autohome\WinStreamer\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\Newtonsoft.Json.dll
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\Newtonsoft.Json.pdb
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\Newtonsoft.Json.xml
+C:\Users\Bill\Code\autohome\WinStreamer\obj\x86\Release\WinStreamer.SettingsForm.resources
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\WinStreamer.exe.config
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\WinStreamer.exe.manifest
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\WinStreamer.application
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\WinStreamer.exe
+C:\Users\Bill\Code\autohome\WinStreamer\bin\Release\WinStreamer.pdb
+C:\Users\Bill\Code\autohome\WinStreamer\obj\x86\Release\WinStreamer.exe.manifest
+C:\Users\Bill\Code\autohome\WinStreamer\obj\x86\Release\WinStreamer.application
+C:\Users\Bill\Code\autohome\WinStreamer\obj\x86\Release\WinStreamer.exe
+C:\Users\Bill\Code\autohome\WinStreamer\obj\x86\Release\WinStreamer.pdb

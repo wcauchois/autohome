@@ -22,5 +22,41 @@ namespace WinStreamer.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.112")]
+        public string RemoteHost {
+            get {
+                return ((string)(this["RemoteHost"]));
+            }
+            set {
+                this["RemoteHost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3100")]
+        public int RelayPort {
+            get {
+                return ((int)(this["RelayPort"]));
+            }
+            set {
+                this["RelayPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8080")]
+        public int ControlPort {
+            get {
+                return ((int)(this["ControlPort"]));
+            }
+            set {
+                this["ControlPort"] = value;
+            }
+        }
     }
 }
