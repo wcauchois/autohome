@@ -67,7 +67,7 @@ namespace WinStreamer {
       trayIcon.Visible = true;
     }
 
-    private void OnKeyPressed(object sender, KeyPressedEventArgs e) {
+    private void OnKeyPressed(object sender, KeyPressedEventArgs e) { // XXX volume control doesn't work
       // Key presses are only for volume control
       string volumeData = Encoding.UTF8.GetString(webClient.DownloadData("http://192.168.1.112:8080/volume/get"));
       JObject volumeJson = JObject.Parse(volumeData);
@@ -91,7 +91,7 @@ namespace WinStreamer {
       }
 
       webClient.UploadData("http://192.168.1.112:8080/volume/set",
-        Encoding.UTF8.GetBytes(string.Format("{ \"volume\": {0} }", currentVolume))); // XXX formatting exception here
+        Encoding.UTF8.GetBytes(string.Format("{{ \"volume\": {0} }}", currentVolume)));
       volumeOverlay.SetVolume(currentVolume);
     }
 
@@ -134,9 +134,11 @@ namespace WinStreamer {
         waveIn.DataAvailable += OnDataAvailable;
         waveIn.StartRecording();
 
-        keyboardHook = new KeyboardHook();
-        keyboardHook.KeyPressed += OnKeyPressed;
-        RegisterHotkeys();
+        /* XXX don't register keyboard hooks as volume control doesn't work
+         * keyboardHook = new KeyboardHook();
+         * keyboardHook.KeyPressed += OnKeyPressed;
+         * RegisterHotkeys();
+         */
       }
     }
 
