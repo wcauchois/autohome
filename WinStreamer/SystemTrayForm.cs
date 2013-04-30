@@ -176,10 +176,7 @@ namespace WinStreamer {
         keyboardHook = null;
       }
 
-      if (tcpClient != null && tcpClient.Connected) {
-        Disconnect();
-      }
-
+      Disconnect();
       UpdateTrayMenuAndIcon();
     }
 
