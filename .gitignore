@@ -6,4 +6,4 @@ WinStreamer/obj
 WinStreamer/publish
 bin
 *.pfx
-runtime.json
+config/runtime.json
