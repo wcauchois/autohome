@@ -53,10 +53,10 @@
     <ApplicationIcon>App.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>26CE397F4ED760792BAE343546C09ABBDA3F5506</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>62B420CA08E5365F9F8DDA9C3984DD3D3A4C09E0</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>WinBroadcast_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>WinStreamer_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -125,6 +125,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="WinStreamer_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="RecordDisabled.ico" />
