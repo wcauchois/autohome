@@ -12,8 +12,10 @@ using System.Drawing;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.IO.Compression;
 
 namespace WinStreamer {
+  // XXX: All this capture logic should definitely not be coupled to this UI stuff. Refactor!!
   public class SystemTrayForm : Form {
     private const float VolumeIncrement = 0.2f;
 
@@ -28,6 +30,7 @@ namespace WinStreamer {
     private KeyboardHook keyboardHook;
     private VolumeOverlay volumeOverlay;
     private WebClient webClient = new WebClient();
+    private GZipStream gzipCompressor = null;
 
     private void UpdateTrayMenuAndIcon() {
       trayMenu.MenuItems.Remove(startStreaming);
@@ -95,6 +98,9 @@ namespace WinStreamer {
       volumeOverlay.SetVolume(currentVolume);
     }
 
+    /// <summary>
+    /// Try connecting to the remote host. Returns true if successful.
+    /// </summary>
     private bool TryConnect() {
       try {
         tcpClient = new TcpClient();
@@ -120,6 +126,9 @@ namespace WinStreamer {
       keyboardHook.RegisterHotKey(0, Keys.VolumeMute);
     }
 
+    /// <summary>
+    /// Start streaming to the remote host. This initializes a new instance of WasapiLoopbackCapture.
+    /// </summary>
     private void OnStartStreaming(object sender, EventArgs e) {
       if (TryConnect()) {
         streaming = true;
@@ -134,6 +143,8 @@ namespace WinStreamer {
         waveIn.DataAvailable += OnDataAvailable;
         waveIn.StartRecording();
 
+        gzipCompressor = new GZipStream(tcpClient.GetStream(), CompressionMode.Compress);
+
         /* XXX don't register keyboard hooks as volume control doesn't work
          * keyboardHook = new KeyboardHook();
          * keyboardHook.KeyPressed += OnKeyPressed;
@@ -142,16 +153,24 @@ namespace WinStreamer {
       }
     }
 
+    /// <summary>
+    /// Called when recorded data is available from WASAPI loopback. This basically reads
+    /// the available data, converts it into a suitable format, and streams it to the
+    /// remote host.
+    /// </summary>
     private void OnDataAvailable(object sender, WaveInEventArgs e) {
       if (!reset) {
         try {
           MemoryStream sendStream = new MemoryStream(e.BytesRecorded);
+          // The buffer we got is a set of floating-point samples. We need to convert
+          // it into a stream of shorts (S16_LE format).
           for (int i = 0; i < e.BytesRecorded / 4; i++) {
             float sample = BitConverter.ToSingle(e.Buffer, i * 4);
             short sampleShort = (short)(sample * 32768);
             sendStream.Write(BitConverter.GetBytes(sampleShort), 0, 2);
           }
-          tcpClient.GetStream().Write(sendStream.GetBuffer(), 0, (int)sendStream.Length);
+          gzipCompressor.Write(sendStream.GetBuffer(), 0, (int)sendStream.Length);
+          gzipCompressor.Flush();
         } catch (Exception) {
           reset = true;
           BeginInvoke((MethodInvoker)delegate {
@@ -164,6 +183,11 @@ namespace WinStreamer {
 
     private void EndStreaming() {
       streaming = false;
+
+      if (gzipCompressor != null) {
+        gzipCompressor.Close();
+        gzipCompressor.Dispose();
+      }
 
       if (waveIn != null) {
         waveIn.StopRecording();

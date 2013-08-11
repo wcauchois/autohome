@@ -7,3 +7,5 @@ WinStreamer/publish
 bin
 *.pfx
 config/runtime.json
+# fucking windows
+Thumbs.db
