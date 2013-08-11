@@ -69,7 +69,7 @@ namespace WinStreamer {
 
     private void OnKeyPressed(object sender, KeyPressedEventArgs e) { // XXX volume control doesn't work
       // Key presses are only for volume control
-      string volumeData = Encoding.UTF8.GetString(webClient.DownloadData("http://192.168.1.112:8080/volume/get"));
+      string volumeData = Encoding.UTF8.GetString(webClient.DownloadData("http://192.168.1.42:8080/volume/get"));
       JObject volumeJson = JObject.Parse(volumeData);
       float currentVolume = (float)volumeJson["volume"];
       if (volumeOverlay == null) {
@@ -90,7 +90,7 @@ namespace WinStreamer {
         break;
       }
 
-      webClient.UploadData("http://192.168.1.112:8080/volume/set",
+      webClient.UploadData("http://192.168.1.42:8080/volume/set",
         Encoding.UTF8.GetBytes(string.Format("{{ \"volume\": {0} }}", currentVolume)));
       volumeOverlay.SetVolume(currentVolume);
     }
@@ -98,7 +98,7 @@ namespace WinStreamer {
     private bool TryConnect() {
       try {
         tcpClient = new TcpClient();
-        tcpClient.Connect("192.168.1.112", 3100);
+        tcpClient.Connect("192.168.1.42", 3100);
         return true;
       } catch (Exception) {
         trayIcon.ShowBalloonTip(1000, "Connection Failed", "Failed to connect to remote host", ToolTipIcon.Error);
