@@ -7,18 +7,12 @@
 #include <string.h>
 #include <unistd.h>
 
+#define DEVICE "hw:1,0"
+#define PORT 3100
+
 int main(int argc, char **argv) {
   int server_sock;
   struct sockaddr_in my_addr;
-  const char *device_name;
-  int listen_port;
-
-  if (argc < 3) {
-    printf("Usage: %s PORT DEVICE\n", argv[0]);
-    exit(0);
-  }
-  device_name = strdup(argv[2]);
-  listen_port = atoi(argv[1]);
 
   server_sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
   if (-1 == server_sock) {
@@ -28,7 +22,7 @@ int main(int argc, char **argv) {
 
   memset(&my_addr, 0, sizeof(my_addr));
   my_addr.sin_family = AF_INET;
-  my_addr.sin_port = htons(listen_port);
+  my_addr.sin_port = htons(PORT);
   my_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
   if (-1 == bind(server_sock, (struct sockaddr *)&my_addr, sizeof(my_addr))) {
@@ -42,7 +36,7 @@ int main(int argc, char **argv) {
     close(server_sock);
     exit(1);
   }
-  printf("Listening on port %d\n", listen_port);
+  printf("Listening on port %d\n", PORT);
   fflush(stdout);
 
   for (;;) {
@@ -63,7 +57,7 @@ int main(int argc, char **argv) {
 
     if ((childpid = fork()) == 0) {
       dup2(client_sock, 0);
-      execlp("pacat", "pacat", "-d", device_name, "--latency-msec", "10", (char *)0);
+      execlp("aplay", "aplay", "-D", DEVICE, "-f", "cd", (char *)0);
     } else {
       waitpid(childpid, NULL, NULL);
     }
