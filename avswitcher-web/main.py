@@ -12,4 +12,4 @@ def hello():
 if __name__ == '__main__': 
   input_sources_json = json.load(open('inputsources.json', 'r'))
   input_sources_list = input_sources_json.keys()
-  app.run()
+  app.run(host='0.0.0.0')
