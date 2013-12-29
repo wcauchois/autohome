@@ -1,6 +1,7 @@
 *.swp
 WinStreamer/*.suo
 WinStreamer/*.csproj.user
+.DS_Store
 WinStreamer/bin
 WinStreamer/obj
 WinStreamer/publish
