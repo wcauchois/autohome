@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import json
 from flask import Flask, render_template, request
 import flask
@@ -8,6 +10,7 @@ from time import sleep
 
 app = Flask(__name__)
 
+working_dir = os.path.dirname(os.path.realpath(__file__))
 input_sources_list = []
 
 @app.route('/')
@@ -47,7 +50,7 @@ def interrupt_handler(signal, frame):
 signal.signal(signal.SIGINT, interrupt_handler)
 
 if __name__ == '__main__': 
-  input_sources_json = json.load(open('inputsources.json', 'r'))
+  input_sources_json = json.load(open(os.path.join(working_dir, 'inputsources.json'), 'r'))
   input_sources_list = input_sources_json.keys()
 
   lirc_command_queue = Queue()
