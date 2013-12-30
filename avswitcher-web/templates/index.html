@@ -1,23 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Media Input Switcher</title>
     <link rel="stylesheet" href="/static/jquery.mobile-1.4.0.min.css" />
+    <link rel="shortcut icon" href="/static/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/static/jquery-1.10.1.min.js"></script>
     <script src="/static/jquery.mobile-1.4.0.min.js"></script>
+    <script src="/static/underscore-min.js"></script>
+    <script type="text/javascript">
+function setup_hdmi_source(hdmi_source) {
+  var $el = $('#select-hdmi-' + hdmi_source);
+  $el.click(function() {
+    $.post('/switch_hdmi', 'source=' + hdmi_source, function() {
+      $('.select-hdmi').removeClass('ui-btn-active');
+      $el.addClass('ui-btn-active');
+    });
+  });
+}
+$(document).ready(function() {
+  for (var hdmi_source = 1; hdmi_source <= 4; hdmi_source++) {
+    setup_hdmi_source(hdmi_source);
+  }
+});
+    </script>
   </head>
   <body>
     <div data-role="page">
       <div data-role="header">
-        <h1>Input Switcher</h1>
+        <h1>Media Input Switcher</h1>
       </div>
       <div role="main" class="ui-content">
-        <ul data-role="listview">
-          {% for inputsource in inputsources %}
-            <li><a href="#" class="ui-btn">{{ inputsource }}</a></li>
-          {% endfor %}
-        </ul>
+        <div data-role="tabs" id="tabs">
+          <div data-role="navbar">
+            <ul>
+              <li><a href="#one" data-ajax="false" class="ui-btn-active">HDMI Inputs</a></li>
+              <li><a href="#two" data-ajax="false">Configurations</a></li>
+            </ul>
+          </div>
+          <div id="one" class="ui-body-d ui-content">
+            <ul data-role="listview">
+              {# circled unicode chars: http://www.unicode.org/charts/nameslist/n_2460.html #}
+              <li><a href="#" class="ui-btn select-hdmi" id="select-hdmi-1">HDMI &#9461;</a></li>
+              <li><a href="#" class="ui-btn select-hdmi" id="select-hdmi-2">HDMI &#9462;</a></li>
+              <li><a href="#" class="ui-btn select-hdmi" id="select-hdmi-3">HDMI &#9463;</a></li>
+              <li><a href="#" class="ui-btn select-hdmi" id="select-hdmi-4">HDMI &#9464;</a></li>
+            </ul>
+          </div>
+          <div id="two" class="ui-body-d ui-content">
+            <ul data-role="listview">
+              {% for inputsource in inputsources %}
+                <li><a href="#" class="ui-btn">{{ inputsource }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
       </div>
       <!--
       <div data-role="footer"><h4>Footer content</h4></div>
