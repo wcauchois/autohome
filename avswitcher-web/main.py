@@ -24,11 +24,19 @@ def submit_lirc_command(code):
 def switch_hdmi():
   desired_source = request.form['source']
   if desired_source in map(str, range(1, 5)):
-    submit_lirc_command('KEY_PROG%s' % desired_source)
+    submit_lirc_command('my_remote KEY_PROG%s' % desired_source)
     return flask.jsonify({'result': 'OK'})
   else:
     return flask.jsonify({'result': 'Bad request'}), 400
     
+@app.route('/switch_audio', methods=['POST'])
+def switch_audio():
+  desired_source = request.form['source']
+  if desired_source in map(str, range(1, 5)):
+    submit_lirc_command('audio_remote KEY_PROG%s' % desired_source)
+    return flask.jsonify({'result': 'OK'})
+  else:
+    return flask.jsonify({'result': 'Bad request'}), 400
 
 def lirc_command_worker(q):
   #return
@@ -36,10 +44,10 @@ def lirc_command_worker(q):
     code = q.get()
     if code == 'EXIT':
       break
-    ret = os.system('irsend SEND_START my_remote %s' % code)
+    ret = os.system('irsend SEND_START %s' % code)
     if ret == 0:
       sleep(0.3)
-      os.system('irsend SEND_STOP my_remote %s' % code)
+      os.system('irsend SEND_STOP %s' % code)
 
 # We need to install an interrupt handler so that we can shut down
 # the worker thread and exit cleanly.

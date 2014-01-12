@@ -18,9 +18,21 @@ function setup_hdmi_source(hdmi_source) {
     });
   });
 }
+function setup_audio_source(audio_source) {
+  var $el = $('#select-audio-' + audio_source);
+  $el.click(function() {
+    $.post('switch_audio', 'source=' + audio_source, function() {
+      $('.select-audio').removeClass('ui-btn-active');
+      $el.addClass('ui-btn-active');
+    });
+  });
+}
 $(document).ready(function() {
   for (var hdmi_source = 1; hdmi_source <= 4; hdmi_source++) {
     setup_hdmi_source(hdmi_source);
+  }
+  for (var audio_source = 1; audio_source <= 4; audio_source++) {
+    setup_audio_source(audio_source);
   }
 });
     </script>
@@ -35,7 +47,7 @@ $(document).ready(function() {
           <div data-role="navbar">
             <ul>
               <li><a href="#one" data-ajax="false" class="ui-btn-active">HDMI Inputs</a></li>
-              <li><a href="#two" data-ajax="false">Configurations</a></li>
+              <li><a href="#two" data-ajax="false">Audio Inputs</a></li>
             </ul>
           </div>
           <div id="one" class="ui-body-d ui-content">
@@ -49,10 +61,18 @@ $(document).ready(function() {
           </div>
           <div id="two" class="ui-body-d ui-content">
             <ul data-role="listview">
+              <li><a href="#" class="ui-btn select-audio" id="select-audio-1">Audio 1 (HDMI Out)</a></li>
+              <li><a href="#" class="ui-btn select-audio" id="select-audio-2">Audio 2 (DJ Mixer)</a></li>
+              <li><a href="#" class="ui-btn select-audio" id="select-audio-3">Audio 3 (USB Interface)</a></li>
+              <li><a href="#" class="ui-btn select-audio" id="select-audio-4">Audio 4 (1/4" Aux)</a></li>
+            </ul>
+          {#
+            <ul data-role="listview">
               {% for inputsource in inputsources %}
                 <li><a href="#" class="ui-btn">{{ inputsource }}</a></li>
               {% endfor %}
             </ul>
+          #}
           </div>
         </div>
       </div>
