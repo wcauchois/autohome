@@ -46,11 +46,19 @@ $(document).ready(function() {
         <div data-role="tabs" id="tabs">
           <div data-role="navbar">
             <ul>
-              <li><a href="#one" data-ajax="false" class="ui-btn-active">HDMI Inputs</a></li>
-              <li><a href="#two" data-ajax="false">Audio Inputs</a></li>
+              <li><a href="#one" data-ajax="false" class="ui-btn-active">Audio Inputs</a></li>
+              <li><a href="#two" data-ajax="false">HDMI Inputs</a></li>
             </ul>
           </div>
           <div id="one" class="ui-body-d ui-content">
+            <ul data-role="listview">
+              <li><a href="#" class="ui-btn select-audio" id="select-audio-1">Audio 1 (HDMI Out)</a></li>
+              <li><a href="#" class="ui-btn select-audio" id="select-audio-2">Audio 2 (DJ Mixer)</a></li>
+              <li><a href="#" class="ui-btn select-audio" id="select-audio-3">Audio 3 (USB Interface)</a></li>
+              <li><a href="#" class="ui-btn select-audio" id="select-audio-4">Audio 4 (1/4" Aux)</a></li>
+            </ul>
+          </div>
+          <div id="two" class="ui-body-d ui-content">
             <ul data-role="listview">
               {# circled unicode chars: http://www.unicode.org/charts/nameslist/n_2460.html #}
               <li><a href="#" class="ui-btn select-hdmi" id="select-hdmi-1">HDMI 1 (XBox)</a></li>
@@ -59,13 +67,6 @@ $(document).ready(function() {
               <li><a href="#" class="ui-btn select-hdmi" id="select-hdmi-4">HDMI 4 (Chromecast)</a></li>
             </ul>
           </div>
-          <div id="two" class="ui-body-d ui-content">
-            <ul data-role="listview">
-              <li><a href="#" class="ui-btn select-audio" id="select-audio-1">Audio 1 (HDMI Out)</a></li>
-              <li><a href="#" class="ui-btn select-audio" id="select-audio-2">Audio 2 (DJ Mixer)</a></li>
-              <li><a href="#" class="ui-btn select-audio" id="select-audio-3">Audio 3 (USB Interface)</a></li>
-              <li><a href="#" class="ui-btn select-audio" id="select-audio-4">Audio 4 (1/4" Aux)</a></li>
-            </ul>
           {#
             <ul data-role="listview">
               {% for inputsource in inputsources %}
@@ -73,7 +74,6 @@ $(document).ready(function() {
               {% endfor %}
             </ul>
           #}
-          </div>
         </div>
       </div>
       <!--
