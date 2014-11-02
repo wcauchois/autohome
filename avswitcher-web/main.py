@@ -64,18 +64,11 @@ def lirc_command_worker(q):
       sleep(0.3)
       os.system('irsend SEND_STOP %s' % code)
 
-def shutdown_server():
-  func = request.environ.get('werkzeug.server.shutdown')
-  if func is None:
-    raise RuntimeError('Not running with the Werkzeug Server')
-  func()
-
 # We need to install an interrupt handler so that we can shut down
 # the worker thread and exit cleanly.
 def interrupt_handler(signal, frame):
   lirc_command_queue.put('EXIT')
   worker_thread.join()
-  shutdown_server()
   sys.exit(0)
 signal.signal(signal.SIGINT, interrupt_handler)
 
