@@ -1,0 +1,30 @@
+---
+inputSources:
+  - title: Audio Sources
+    lircRemote: audio_remote
+    shortName: Audio
+    icon: glyphicon-headphones
+    key: audio
+    items:
+      - index: 1
+        description: HDMI Out
+      - index: 2
+        description: DJ Mixer
+      - index: 3
+        description: USB Interface
+      - index: 4
+        description: "1/4\" Aux"
+  - title: Video Sources
+    lircRemote: my_remote
+    shortName: Video
+    icon: glyphicon-film
+    key: video
+    items:
+      - index: 1
+        description: XBox
+      - index: 2
+        description: Aux
+      - index: 3
+        description: RasPi
+      - index: 4
+        description: Chromecast

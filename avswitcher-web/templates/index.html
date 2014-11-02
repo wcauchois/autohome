@@ -2,13 +2,14 @@
 <html>
   <head>
     <title>Input Switcher</title>
-    <link rel="stylesheet" href="static/jquery.mobile-1.4.0.min.css" />
-    <link rel="shortcut icon" href="static/favicon.ico" />
+    <link rel="stylesheet" href="{{ static_root }}/bootstrap.min.css" />
+    <link rel="shortcut icon" href="{{ static_root }}/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="static/jquery-1.10.1.min.js"></script>
-    <script src="static/jquery.mobile-1.4.0.min.js"></script>
-    <script src="static/underscore-min.js"></script>
+    <script src="{{ static_root }}/jquery.min.js"></script>
+    <script src="{{ static_root }}/bootstrap.min.js"></script>
+    <script src="{{ static_root }}/underscore-min.js"></script>
     <script type="text/javascript">
+    /*
 function setup_hdmi_source(hdmi_source) {
   var $el = $('#select-hdmi-' + hdmi_source);
   $el.click(function() {
@@ -35,9 +36,60 @@ $(document).ready(function() {
     setup_audio_source(audio_source);
   }
 });
+*/
     </script>
   </head>
   <body>
+    <div class="container">
+      <h3></h3>
+      {% for source_group in input_sources.inputSources %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{ source_group.title }}</h3>
+          </div>
+          <div class="panel-body">
+            <div class="list-group">
+              {% for source in source_group['items'] %}
+                <a href="#" class="list-group-item sourceLink {{ source_group.key }}{% if current_inputs[source_group.key] == source.index %} active{% endif %}" data-key="{{ source_group.key }}" data-index="{{ source.index }}">
+                  <span class="glyphicon {{ source_group['icon'] }}"></span>
+                  {{ source_group.shortName }} {{ source.index }} ({{ source.description }})
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <script type="text/javascript">
+      _.each($('.sourceLink').toArray(), function(sourceLink) {
+        var $sourceLink = $(sourceLink);
+        var index = $sourceLink.data('index').toString();
+        var key = $sourceLink.data('key');
+        $sourceLink.click(function() {
+          $.post('switch_input', {source: index, type: key}, function() {
+            $('.sourceLink.' + key).removeClass('active');
+            $sourceLink.addClass('active');
+          });
+          return false;
+        });
+      });
+    </script>
+      <!--
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Audio Sources</h3>
+        </div>
+        <div class="panel-body">
+          <div class="list-group">
+            <a href="#" class="list-group-item">
+              <span class="glyphicon glyphicon-headphones"></span>
+              Audio 1 (HDMI Out)
+            </a>
+          </div>
+        </div>
+      </div>
+      -->
+  <!--
     <div data-role="page">
       <div data-role="header">
         <h1>Input Switcher</h1>
@@ -76,9 +128,10 @@ $(document).ready(function() {
           #}
         </div>
       </div>
+      -->
       <!--
       <div data-role="footer"><h4>Footer content</h4></div>
       -->
-    </div>
+    <!--</div>-->
   </body>
 </html>
